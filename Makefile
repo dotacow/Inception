@@ -1,4 +1,4 @@
-.PHONY: up down downv env_check
+.PHONY: up down downv setup_env
 
-env_check:
-	@./srcs/tools/env_check.sh
+setup_env:
+	@./srcs/tools/setup_env.sh
