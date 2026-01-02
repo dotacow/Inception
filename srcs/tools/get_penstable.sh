@@ -9,11 +9,11 @@ VERSION=$(curl -s "https://hub.docker.com/v2/repositories/library/alpine/tags?pa
 
 echo "Penultimate Alpine version: $VERSION"
 
-touch srcs/.env
+touch ../env
 
-if grep -q "^ALPINE_VERSION=" srcs/.env; then
-  sed -i "s/^ALPINE_VERSION=.*/ALPINE_VERSION=$VERSION/" srcs/.env
+if grep -q "^ALPINE_VERSION=" ../env; then
+  sed -i "s/^ALPINE_VERSION=.*/ALPINE_VERSION=$VERSION/" ../env
 else
-  echo "ALPINE_VERSION=$VERSION" >> srcs/.env
+  echo "ALPINE_VERSION=$VERSION" >> ../env
 fi
 echo "Updated .env with ALPINE_VERSION=$VERSION"
