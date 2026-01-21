@@ -1,0 +1,18 @@
+services:
+  nginx:
+    build:
+      context: ./requirements/nginx
+      args:
+        ALPINE_VERSION: ${ALPINE_VERSION}
+    environment:
+      DOMAIN_NAME: ${DOMAIN_NAME}
+    ports:
+      - "443:443"
+    healthcheck:
+      test: ["CMD", "curl -fk https://localhost"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    #volumes: TBD
+     # -

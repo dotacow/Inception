@@ -108,4 +108,4 @@ below is the list of resources which I found useful while working on this projec
 - [How to install a LEMP stack](https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-on-ubuntu)
 - [Docker's beginner's guide](https://docs.docker.com/get-started/)
 
-AI was used to aid in research and generate boilerplate code snippets, as well as proofreading documentation.
+AI was used to aid in research and generate boilerplate code snippets,conf files, as well as proofreading documentation.
