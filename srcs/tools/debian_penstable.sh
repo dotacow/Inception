@@ -3,14 +3,14 @@
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 ENV_FILE="${SCRIPT_DIR}/../.env"
 
- set -euo pipefail
+set -euo pipefail
 
 VERSION=$(curl -s "https://hub.docker.com/v2/repositories/library/debian/tags?page_size=100" | \
   jq -r '.results[].name' | \
   grep -E '^[0-9]+\.[0-9]+$' | \
   sort -V | \
   tail -n 2 | \
-  head -n 1)
+  head -n 1 || true)
 
 if [ -z "$VERSION" ]; then
     echo "Error: Could not fetch debian version."
@@ -19,7 +19,7 @@ fi
 
 CURRENT_VERSION=""
 if [ -f "$ENV_FILE" ]; then
-    CURRENT_VERSION=$(grep "^DEBIAN_VERSION=" "$ENV_FILE" | cut -d '=' -f2)
+    CURRENT_VERSION=$(grep "^DEBIAN_VERSION=" "$ENV_FILE" | cut -d '=' -f2 || true)
 fi
 
 if [ "$CURRENT_VERSION" != "$VERSION" ]; then
