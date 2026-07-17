@@ -40,8 +40,8 @@ echo "Generating secrets and directories..."
 "${SCRIPT_DIR}/alpine_penstable.sh"
 "${SCRIPT_DIR}/debian_penstable.sh"
 
-sudo mkdir -p "${HOME}/data/wordpress"
-sudo mkdir -p "${HOME}/data/mariadb"
+mkdir -p "${HOME}/data/wordpress"
+mkdir -p "${HOME}/data/mariadb"
 
 mkdir -p "${SECRETS_DIR}"
 # employ unbreakable wordle algorithm

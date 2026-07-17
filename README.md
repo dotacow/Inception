@@ -4,13 +4,13 @@ _This project has been created as part of the 42 curriculum by yousef kitaneh_
 # Table of Contents
 - [Table of Contents](#table-of-contents)
 - [Description](#description)
-	- [Overview](#overview)
-	- [Background and Clarifications](#background-and-clarifications)
-		- [Virtualization vs Containerization](#virtualization-vs-containerization)
-		- [Docker Secrets vs Environment Variables](#docker-secrets-vs-environment-variables)
-		- [Docker Network vs Host Network](#docker-network-vs-host-network)
-		- [Docker Volumes vs Bind Mounts](#docker-volumes-vs-bind-mounts)
-	- [Design Choices](#design-choices)
+  - [Overview](#overview)
+  - [Background and Clarifications](#background-and-clarifications)
+    - [Virtualization vs Containerization](#virtualization-vs-containerization)
+    - [Docker Secrets vs Environment Variables](#docker-secrets-vs-environment-variables)
+    - [Docker Network vs Host Network](#docker-network-vs-host-network)
+    - [Docker Volumes vs Bind Mounts](#docker-volumes-vs-bind-mounts)
+  - [Design Choices](#design-choices)
 - [Prerequisites and Instructions](#prerequisites-and-instructions)
 - [Resources](#resources)
 ---
@@ -197,6 +197,6 @@ project:
 - [docker image multi-staging](https://docs.docker.com/get-started/)
 - [How to install a LEMP stack](https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-on-ubuntu)
 - [Docker's beginner's guide](https://docs.docker.com/get-started/)
-
-AI was used to aid in research and generate boilerplate code snippets,conf
-files, as well as proofreading documentation.
+- [PHP-FPM Config 101](https://myjeeva.com/php-fpm-configuration-101.html#pool-directives)
+  AI was used to aid in research and generate boilerplate code snippets,conf
+  files, as well as proofreading documentation.
