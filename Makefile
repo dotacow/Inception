@@ -1,12 +1,12 @@
 all: up
 
-build: setup_env
+build:
 	docker compose -f srcs/compose.yaml build
 
-build-no-cache: setup_env
+build-no-cache:
 	docker compose -f srcs/compose.yaml build --no-cache
 
-up: setup_env
+up:
 	docker compose -f srcs/compose.yaml up -d --build
 
 down:
@@ -20,7 +20,4 @@ stop:
 clean:
 	docker compose -f srcs/compose.yaml down --rmi --volumes --remove-orphans -t10
 
-setup_env:
-	@./srcs/tools/setup_env.sh
-
-.PHONY: all build build-no-cache up down re stop clean setup_env
+.PHONY: all build build-no-cache up down re stop clean
