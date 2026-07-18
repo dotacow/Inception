@@ -2,16 +2,16 @@
 set -e
 
 
-if [ -f "/run/secrets/db_password.txt" ] && [ -r "/run/secrets/db_password.txt" ]; then
-	SQL_PASSWORD=$(cat /run/secrets/db_password.txt 2>/dev/null)
+if [ -f "/run/secrets/db_password" ] && [ -r "/run/secrets/db_password" ]; then
+	SQL_PASSWORD=$(cat /run/secrets/db_password 2>/dev/null)
 fi
 
-if [ -f "/run/secrets/wp_admin_password.txt" ] && [ -r "/run/secrets/wp_admin_password.txt" ]; then
-	WP_ADMIN_PASSWORD=$(cat /run/secrets/wp_admin_password.txt 2>/dev/null)
+if [ -f "/run/secrets/wp_admin_password" ] && [ -r "/run/secrets/wp_admin_password" ]; then
+	WP_ADMIN_PASSWORD=$(cat /run/secrets/wp_admin_password 2>/dev/null)
 fi
 
-if [ -f "/run/secrets/wp_password.txt" ] && [ -r "/run/secrets/wp_password.txt" ]; then
-	WP_PASSWORD=$(cat /run/secrets/wp_password.txt 2>/dev/null)
+if [ -f "/run/secrets/wp_password" ] && [ -r "/run/secrets/wp_password" ]; then
+	WP_PASSWORD=$(cat /run/secrets/wp_password 2>/dev/null)
 fi
 
 if [ -z "$SQL_PASSWORD" ] || [ -z "$WP_ADMIN_PASSWORD" ] || [ -z "$WP_PASSWORD" ]; then
