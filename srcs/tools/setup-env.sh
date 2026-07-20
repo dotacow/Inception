@@ -18,8 +18,11 @@ SQL_DATABASE=${SQL_DATABASE:-wordpress}
 read -p "Database User [wp_user]: " SQL_USER
 SQL_USER=${SQL_USER:-wp_user}
 
-read -p "Database Host [mariadb:3306]: " SQL_HOST
-SQL_HOST=${SQL_HOST:-mariadb:3306}
+read -p "Database Hostname [mariadb]: " SQL_HOSTNAME
+SQL_HOSTNAME=${SQL_HOSTNAME:-mariadb}
+
+read -p "Database Host Port [3306]: " SQL_HOSTPORT
+SQL_HOSTPORT=${SQL_HOSTPORT:-3306}
 
 read -p "WordPress Title [mycoolwebsite]: " WP_TITLE
 WP_TITLE=${WP_TITLE:-mycoolwebsite}
@@ -66,7 +69,8 @@ set_env() {
 set_env "DOMAIN_NAME" "${DOMAIN_NAME}"
 set_env "SQL_DATABASE" "${SQL_DATABASE}"
 set_env "SQL_USER" "${SQL_USER}"
-set_env "SQL_HOST" "${SQL_HOST}"
+set_env "SQL_HOSTNAME" "${SQL_HOSTNAME}"
+set_env "SQL_HOSTPORT" "${SQL_HOSTPORT}"
 set_env "WP_TITLE" "${WP_TITLE}"
 set_env "WP_ADMIN_USER" "${WP_ADMIN_USER}"
 set_env "WP_ADMIN_EMAIL" "${WP_ADMIN_EMAIL}"

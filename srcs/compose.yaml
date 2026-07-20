@@ -43,18 +43,18 @@ services:
     networks:
       - inception_net
     healthcheck:
-      test: ["CMD", "mariadb-admin", "ping", "-u", "root", "-p$$(cat /run/secrets/db_root_password)"]
+      test: ["CMD-SHELL", "mariadb-admin ping -u root --password=\"$(cat /run/secrets/db_root_password)\""]
       interval: 30s
       timeout: 10s
       retries: 3
-      start_period: 40s
+      start_period: 50s
 
 
 # TODO:  nginx
 
 networks:
   inception_net:
-    name: inception
+    name: inception_net
 
 volumes:
   wordpress_data:

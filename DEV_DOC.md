@@ -14,10 +14,13 @@
 
 ### useful commands
 
-cool debugging command:
+cool debugging commands:
 
 ```bash
-docker exec -it -u root <container_name> /bin/sh
+docker exec -it -u root <container_name> <command> # general purpose container debugging
+
+netstat -tulnp # check listening ports
+
 ```
 
 layer & states:
@@ -29,10 +32,10 @@ docker \
 			network inspect <network_name> # JSON metadata of network
 			volume inspect <volume_name> #
 ```
-
-fclean:
+container specific:
 
 ```bash
-make down
-docker system prune -a --volumes # Removes all contianers, networks, & volumes.
+docker exec -it wordpress wp user list --allow-root --path=/var/www/html # list all users
+
+docker exec -it wordpress wp db check --allow-root --path=/var/www/html # check wp-database connection
 ```

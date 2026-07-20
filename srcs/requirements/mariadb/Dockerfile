@@ -8,11 +8,11 @@ RUN mkdir -p /run/mysqld /var/lib/mysql \
 
 COPY conf/my.cnf /etc/my.cnf.d/mariadb-server.cnf
 
-COPY tools/mdb-entrypoint.sh /usr/local/bin/
-RUN chmod +x /usr/local/bin/mdb-entrypoint.sh
+COPY tools/mariadb-entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/mariadb-entrypoint.sh
 
 WORKDIR /var/lib/mysql
 
 EXPOSE 3306
 
-ENTRYPOINT ["/usr/local/bin/mdb-entrypoint.sh"]
+ENTRYPOINT ["/usr/local/bin/mariadb-entrypoint.sh"]
