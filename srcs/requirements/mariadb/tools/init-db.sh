@@ -1,12 +1,13 @@
 #!/bin/sh
 set -e
 
+# test this once you get it up and running: normalpswd'; SELECT * FROM mysql.user INTO OUTFILE '/tmp/dump.txt'; --
 if [ -f "/run/secrets/db_password" ] && [ -r "/run/secrets/db_password" ]; then
-    SQL_PASSWORD=$(cat /run/secrets/db_password)
+    SQL_PASSWORD=$(sed "s/'/''/g" cat /run/secrets/db_password)
 fi
 
 if [ -f "/run/secrets/db_root_password" ] && [ -r "/run/secrets/db_root_password" ]; then
-    SQL_ROOT_PASSWORD=$(cat /run/secrets/db_root_password)
+    SQL_ROOT_PASSWORD=$(sed "s/'/''/g" cat /run/secrets/db_root_password)
 fi
 
 if [ -z "$SQL_PASSWORD" ] || [ -z "$SQL_ROOT_PASSWORD" ]; then
