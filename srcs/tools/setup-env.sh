@@ -37,8 +37,8 @@ WP_USER_EMAIL=${WP_USER_EMAIL:-user@example.com}
 echo "---------------------------------------"
 echo "Generating secrets and directories..."
 
-"${SCRIPT_DIR}/alpine_penstable.sh"
-"${SCRIPT_DIR}/debian_penstable.sh"
+"${SCRIPT_DIR}/alpine-penstable.sh"
+"${SCRIPT_DIR}/debian-penstable.sh"
 
 mkdir -p "${HOME}/data/wordpress"
 mkdir -p "${HOME}/data/mariadb"
