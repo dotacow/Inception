@@ -14,10 +14,7 @@ down:
 
 re: down all
 
-stop:
-	docker compose -f srcs/compose.yaml stop -t10
-
 clean:
 	docker compose -f srcs/compose.yaml down --rmi --volumes --remove-orphans -t10
 
-.PHONY: all build build-no-cache up down re stop clean
+.PHONY: all build build-no-cache up re stop clean
