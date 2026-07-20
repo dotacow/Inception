@@ -197,6 +197,8 @@ project:
 - [docker image multi-staging](https://docs.docker.com/get-started/)
 - [How to install a LEMP stack](https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-on-ubuntu)
 - [Docker's beginner's guide](https://docs.docker.com/get-started/)
+- [Alpine Linux Wiki and its various tutorials](https://wiki.alpinelinux.org/wiki/Main_Page)
 - [PHP-FPM Config 101](https://myjeeva.com/php-fpm-configuration-101.html#pool-directives)
-  AI was used to aid in research and generate boilerplate code snippets,conf
-  files, as well as proofreading documentation.
+
+AI was used to aid in research and generate boilerplate code snippets,conf
+files, as well as proofreading documentation.
