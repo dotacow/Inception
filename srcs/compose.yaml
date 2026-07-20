@@ -30,7 +30,6 @@ services:
 
 networks:
   inception_net:
-    driver: bridge
 
 volumes:
   wordpress_data:
