@@ -1,30 +1,18 @@
 #!/bin/sh
-
 set -e
 
-CERT_DIR="/etc/nginx/ssl"
-CERT="$CERT_DIR/inception.crt"
-KEY="$CERT_DIR/inception.key"
-
-
-sed -i "s/_DOMAIN_NAME_/${DOMAIN_NAME}/g" /etc/nginx/nginx.conf
-
-if [ ! -d "$CERT_DIR" ]; then
-	mkdir -p "$CERT_DIR"
+if [ ! -f /etc/nginx/ssl/inception.crt ]; then
+    echo "Generating self-signed TLS certificate..."
+    mkdir -p /etc/nginx/ssl
+    openssl req -x509 -nodes -newkey rsa:2048 \
+        -keyout /etc/nginx/ssl/inception.key \
+        -out /etc/nginx/ssl/inception.crt \
+        -subj "/C=JO/ST=Amman/L=Amman/O=42/OU=Inception/CN=${DOMAIN_NAME}" \
+        > /dev/null 2>&1
+    echo "Certificate generated."
 fi
 
-if [ ! -f "$CERT" ] || [ ! -f "$KEY" ]; then
-	echo "NGINX Entrypoint: Setting up self-signed SSL for ${DOMAIN_NAME}..."
+sed -i "s/__DOMAIN_NAME__/${DOMAIN_NAME}/g" /etc/nginx/http.d/default.conf
 
-	openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
-		-keyout "$KEY" -out "$CERT" \
-		-subj "/CN=${DOMAIN_NAME}" \
-		-addext "subjectAltName = DNS:${DOMAIN_NAME}"
-
-	echo "NGINX Entrypoint: SSL certificates generated."
-else
-	echo "NGINX Entrypoint: SSL certificates already exist. Skipping generation."
-fi
-
-echo "NGINX Entrypoint: Starting Nginx..."
+echo "Starting NGINX..."
 exec nginx -g "daemon off;"
