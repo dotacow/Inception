@@ -30,14 +30,14 @@ above a minimal linux distribution.
 
 in this implementation, the following services are provided:
 
-- an nginx TLS1.3 reverse proxy server.
+- an nginx TLS HTTPS server + fastcgi reverse proxy
 - a mariaDB database server
-- adminer to manage the database
 - a wordpress + php-fpm application server
-- redis caching server to reduce database load
-- an FTP server
-- a simple static website to test the reverse proxy and enable .rrd file upload.
-- a rerun server to visualize .rrd files.
+- adminer to manage the database // tbd
+- redis caching server to reduce database load // tbd
+- an FTP server // tbd
+- a simple static website to test the and enable .rrd file upload. // tbd
+- a rerun server to visualize .rrd files. // tbd
 
 for instructions on how to use the built system, please refer to the
 [user documentation.](./USER_DOC.md)
