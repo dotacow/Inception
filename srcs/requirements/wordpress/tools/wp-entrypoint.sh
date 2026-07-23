@@ -28,7 +28,7 @@ echo "MariaDB Connection established."
 if [ ! -f "/var/www/html/wp-config.php" ]; then
 	echo "Installing WordPress..."
 		
-	wp core download --allow-root --path='/var/www/html'
+	php -d memory_limit=512M /usr/local/bin/wp core download --allow-root --path='/var/www/html'
 		
 	wp config create --allow-root \
 		--dbname="$SQL_DATABASE" \

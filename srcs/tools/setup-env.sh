@@ -12,6 +12,9 @@ echo "enter desired values, or skip to use defaults (in brackets)."
 read -p "Domain name [login.42.fr]: " DOMAIN_NAME
 DOMAIN_NAME=${DOMAIN_NAME:-login.42.fr}
 
+read -p "nginx IP address [127.0.0.2]:" NGINX_IP
+NGINX_IP=${NGINX_IP:-127.0.0.2}
+
 read -p "Database Name [wordpress]: " SQL_DATABASE
 SQL_DATABASE=${SQL_DATABASE:-wordpress}
 
@@ -42,7 +45,6 @@ echo "Generating secrets and directories..."
 
 "${SCRIPT_DIR}/alpine-penstable.sh"
 "${SCRIPT_DIR}/debian-penstable.sh"
-
 mkdir -p "${HOME}/data/wordpress"
 mkdir -p "${HOME}/data/mariadb"
 
@@ -67,6 +69,7 @@ set_env() {
 }
 
 set_env "DOMAIN_NAME" "${DOMAIN_NAME}"
+set_env "NGINX_IP" "${NGINX_IP}"
 set_env "SQL_DATABASE" "${SQL_DATABASE}"
 set_env "SQL_USER" "${SQL_USER}"
 set_env "SQL_HOSTNAME" "${SQL_HOSTNAME}"
@@ -77,4 +80,12 @@ set_env "WP_ADMIN_EMAIL" "${WP_ADMIN_EMAIL}"
 set_env "WP_USER" "${WP_USER}"
 set_env "WP_USER_EMAIL" "${WP_USER_EMAIL}"
 
-echo "all done! make sure to check .env"
+echo "Mapping ${DOMAIN_NAME} to ${NGINX_IP} in /etc/hosts..."
+if grep -qw "${DOMAIN_NAME}" /etc/hosts; then
+    echo "Overwriting ${DOMAIN_NAME} entry..."
+    sudo sed -i "s/.*${DOMAIN_NAME}.*/${NGINX_IP} ${DOMAIN_NAME}/" /etc/hosts
+else
+    echo "${NGINX_IP} ${DOMAIN_NAME}" | sudo tee -a /etc/hosts > /dev/null
+fi
+
+echo "all done! make sure to check srcs/.env"

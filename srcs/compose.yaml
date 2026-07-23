@@ -3,7 +3,7 @@ services:
     build:
       context: ./requirements/wordpress
       args:
-        - ALPINE_VERSION=${ALPINE_VERSION:-3.23}
+        - ALPINE_VERSION=${ALPINE_VERSION}
     container_name: wordpress
     restart: on-failure
     env_file:
@@ -25,12 +25,11 @@ services:
       timeout: 10s
       retries: 3
       start_period: 40s
-
   mariadb:
     build:
       context: ./requirements/mariadb
       args:
-        - ALPINE_VERSION=${ALPINE_VERSION:-3.23}
+        - ALPINE_VERSION=${ALPINE_VERSION}
     container_name: mariadb
     restart: on-failure
     env_file:
@@ -48,9 +47,30 @@ services:
       timeout: 10s
       retries: 3
       start_period: 50s
-
-
-# TODO:  nginx
+  nginx:
+    build:
+      context: ./requirements/nginx
+      args:
+        - ALPINE_VERSION=${ALPINE_VERSION}
+    container_name: nginx
+    restart: on-failure
+    env_file:
+      - .env
+    ports:
+      - "${NGINX_IP}:443:443"
+    volumes:
+      - wordpress_data:/var/www/html
+    networks:
+      - inception_net
+    depends_on:
+      wordpress:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fk https://localhost"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
 
 networks:
   inception_net:

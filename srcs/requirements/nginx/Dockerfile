@@ -2,8 +2,7 @@ ARG ALPINE_VERSION=3.23
 FROM alpine:${ALPINE_VERSION}
 
 RUN apk update && apk add --no-cache \
-    nginx \
-    openssl
+    nginx openssl curl
 
 RUN mkdir -p /run/nginx /etc/nginx/ssl
 
