@@ -1,11 +1,17 @@
-ARG ALPINE_VERSION
+ARG ALPINE_VERSION=3.23
 FROM alpine:${ALPINE_VERSION}
 
-RUN apk add --no-cache nginx openssl curl
+RUN apk update && apk add --no-cache \
+    nginx \
+    openssl
 
-COPY conf/nginx.conf /etc/nginx/nginx.conf
-COPY tools/docker-entrypoint.sh /usr/local/bin/
-RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+RUN mkdir -p /run/nginx /etc/nginx/ssl
+
+COPY conf/nginx.conf /etc/nginx/http.d/default.conf
+COPY tools/nginx-entrypoint.sh /usr/local/bin/
+
+RUN chmod +x /usr/local/bin/nginx-entrypoint.sh
+
 EXPOSE 443
 
 ENTRYPOINT ["/usr/local/bin/nginx-entrypoint.sh"]
