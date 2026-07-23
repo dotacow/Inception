@@ -41,7 +41,6 @@ TEMP_PID=$!
     rm -f /tmp/init.sql
 
     mysqladmin --socket=/run/mysqld/mysqld.sock -u root -p"${SQL_ROOT_PASSWORD}" shutdown
-    kill "$TEMP_PID"
     wait "$TEMP_PID"
 else
     echo "Found existing mariadb data directory."
