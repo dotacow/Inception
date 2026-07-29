@@ -33,11 +33,14 @@ in this implementation, the following services are provided:
 - an nginx TLS HTTPS server + fastcgi reverse proxy
 - a mariaDB database server
 - a wordpress + php-fpm application server
-- adminer to manage the database // tbd
-- redis caching server to reduce database load // tbd
-- an FTP server // tbd
-- a simple static website to test the and enable .rrd file upload. // tbd
-- a rerun server to visualize .rrd files. // tbd
+- adminer to manage the database // TBD
+- redis caching server to reduce database load // TBD
+- an FTP server // TBD
+- a simple static website to test the and enable .rrd file upload. // TBD
+- a rerun server to visualize .rrd files. // TBD
+
+for instructions on how to setup, build, and launch the project, please refer to
+the [developer documentation.](./DEV_DOC.md)
 
 for instructions on how to use the built system, please refer to the
 [user documentation.](./USER_DOC.md)
@@ -180,9 +183,6 @@ to stop the containers:
 ```bash
 make down
 ```
-
-for an extensive list of management commands, please refer to the
-[developer documentation.](./DEV_DOC.md)
 
 # Resources
 
